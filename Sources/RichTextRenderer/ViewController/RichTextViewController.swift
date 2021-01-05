@@ -113,7 +113,9 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
 
         textView.isScrollEnabled = true
         textView.contentSize.height = .greatestFiniteMagnitude
+        #if os(iOS)
         textView.isEditable = false
+        #endif
     }
 
     private func invalidateLayout() {

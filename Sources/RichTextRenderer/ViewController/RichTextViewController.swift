@@ -94,6 +94,7 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         textContainer.widthTracksTextView = true
         textContainer.heightTracksTextView = true
         textContainer.lineBreakMode = .byWordWrapping
+        textContainer.lineFragmentPadding = 0
 
         layoutManager.addTextContainer(textContainer)
         layoutManager.delegate = self

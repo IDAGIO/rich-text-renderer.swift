@@ -123,6 +123,12 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         #if os(iOS)
         textView.isEditable = false
         #endif
+
+        #if os(tvOS)
+        textView.isUserInteractionEnabled = true
+        textView.isSelectable = true
+        textView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.indirect.rawValue)]
+        #endif
     }
 
     private func invalidateLayout() {

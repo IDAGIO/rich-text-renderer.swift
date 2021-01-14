@@ -1,8 +1,8 @@
 // RichTextRenderer
 
-struct ListItemIndicatorFactory {
+public struct ListItemIndicatorFactory {
     /// Creates proper string indicator representing a bullet point, number or character that is presented on list.
-    func makeIndicator(
+    public func makeIndicator(
         forListType listType: ListType,
         atIndex index: Int,
         atLevel level: Int

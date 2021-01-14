@@ -6,7 +6,6 @@ import UIKit
 /// Renderer for a `Contentful.Text` node.
 open class TextRenderer: NodeRendering {
     public typealias NodeType = Text
-    public var textColor = UIColor.rtrLabel
 
     required public init() {}
 
@@ -18,6 +17,8 @@ open class TextRenderer: NodeRendering {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = rootRenderer.configuration.textConfiguration.lineSpacing
         paragraphStyle.paragraphSpacing = rootRenderer.configuration.textConfiguration.paragraphSpacing
+
+        let textColor = UIColor.rtrLabel
 
         var attributes: [NSAttributedString.Key: Any] = [
             .font: rootRenderer.configuration.fontProvider.font(for: node),

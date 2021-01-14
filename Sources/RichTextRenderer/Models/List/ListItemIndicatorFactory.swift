@@ -1,12 +1,15 @@
 // RichTextRenderer
 
 public struct ListItemIndicatorFactory {
+    public static var showIndicators = true
     /// Creates proper string indicator representing a bullet point, number or character that is presented on list.
     public func makeIndicator(
         forListType listType: ListType,
         atIndex index: Int,
         atLevel level: Int
     ) -> String {
+        guard ListItemIndicatorFactory.showIndicators else { return "" }
+
         switch listType {
         case .ordered:
             let indicatorTypes: [OrderedListIndicator] = [

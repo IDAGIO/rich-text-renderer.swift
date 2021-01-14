@@ -9,11 +9,6 @@ import Contentful
  The content of the document is rendered to internal text view.
 */
 open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
-    // Background color of text view
-    public var backgroundColor: UIColor = UIColor.rtrSystemBackground
-
-    // Text color of text view
-    public var textColor: UIColor = UIColor.rtrSystemBackground
 
     private enum Constant {
         static let embedSuffix = "-embed"
@@ -107,8 +102,7 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
     private func setupTextView() {
         textView = UITextView(frame: view.bounds, textContainer: textContainer)
         textView.textContainerInset = renderer.configuration.contentInsets
-        textView.backgroundColor = backgroundColor
-        textView.textColor = textColor
+        textView.backgroundColor = UIColor.rtrSystemBackground
 
         view.addSubview(textView)
 

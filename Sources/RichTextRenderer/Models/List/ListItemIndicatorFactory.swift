@@ -7,8 +7,8 @@ public struct ListItemIndicatorFactory {
         forListType listType: ListType,
         atIndex index: Int,
         atLevel level: Int
-    ) -> String {
-        guard ListItemIndicatorFactory.showIndicators else { return "" }
+    ) -> String? {
+        guard ListItemIndicatorFactory.showIndicators else { return nil }
 
         switch listType {
         case .ordered:

@@ -49,6 +49,7 @@ public final class DefaultFontProvider: FontProviding {
         )
     }
 
+    #if os(iOS)
     public init(
         baseFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
         monospacedFont: UIFont? = UIFont(name: "Menlo-Regular", size: UIFont.systemFontSize)
@@ -56,4 +57,13 @@ public final class DefaultFontProvider: FontProviding {
         self.baseFont = baseFont
         self.monospacedFont = monospacedFont ?? baseFont
     }
+    #elseif os(tvOS)
+    public init(
+        baseFont: UIFont = UIFont.preferredFont(forTextStyle: .body),
+        monospacedFont: UIFont? = UIFont(name: "Menlo-Regular", size: UIFont.preferredFont(forTextStyle: .body).pointSize)
+    ) {
+        self.baseFont = baseFont
+        self.monospacedFont = monospacedFont ?? baseFont
+    }
+    #endif
 }

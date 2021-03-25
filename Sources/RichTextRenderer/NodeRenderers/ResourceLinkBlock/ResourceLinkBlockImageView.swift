@@ -1,10 +1,10 @@
 // RichTextRenderer
 
-import AlamofireImage
 import Contentful
 import UIKit
 
 /// Default `Asset` view representable for image kind of asset.
+// NOTE: Alamofire dependency was removed, therefore image caching might not work anymore
 public class ResourceLinkBlockImageView: UIImageView, ResourceLinkBlockViewRepresentable {
 
     private var asset: Asset
@@ -54,12 +54,15 @@ public class ResourceLinkBlockImageView: UIImageView, ResourceLinkBlockViewRepre
 
         let url = try! asset.url(with: imageOptions)
 
-        self.af.setImage(
-            withURL: url,
-            placeholderImage: nil,
-            imageTransition: .crossDissolve(0.5),
-            runImageTransitionIfCached: true
-        )
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -25,7 +25,12 @@ public extension Swift.Array where Element == NSMutableAttributedString {
         )
 
         if listContext.isFirstListItemChild {
-            let attributedString = NSMutableAttributedString(string: "\t" + indicator + "\t")
+            var attributedString: NSMutableAttributedString
+            if let indicator = indicator {
+                attributedString = NSMutableAttributedString(string: "\t" + indicator + "\t")
+            } else {
+                attributedString = NSMutableAttributedString(string: "\t")
+            }
 
             attributedString.addAttributes(
                 [.foregroundColor: UIColor.rtrLabel],

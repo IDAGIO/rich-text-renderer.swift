@@ -89,6 +89,7 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
         textContainer.widthTracksTextView = true
         textContainer.heightTracksTextView = true
         textContainer.lineBreakMode = .byWordWrapping
+        textContainer.lineFragmentPadding = 0
 
         layoutManager.addTextContainer(textContainer)
         layoutManager.delegate = self
@@ -113,7 +114,15 @@ open class RichTextViewController: UIViewController, NSLayoutManagerDelegate {
 
         textView.isScrollEnabled = true
         textView.contentSize.height = .greatestFiniteMagnitude
+        #if os(iOS)
         textView.isEditable = false
+        #endif
+
+        #if os(tvOS)
+        textView.isUserInteractionEnabled = true
+        textView.isSelectable = true
+        textView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.indirect.rawValue)]
+        #endif
     }
 
     private func invalidateLayout() {
